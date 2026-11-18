@@ -46,11 +46,10 @@ html {
 }
 
 body {
-    background-color: #0b0f17 !important;
-    background-image: 
-        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 85% 65%, rgba(124, 58, 237, 0.14) 0%, transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(37, 99, 235, 0.10) 0%, transparent 50%) !important;
+   body {
+    background-color: #050505 !important;
+    background-image: none !important;
+    background-attachment: fixed !important;
     background-attachment: fixed !important;
     color: #e2e8f0;
     font-family: var(--font-main);
