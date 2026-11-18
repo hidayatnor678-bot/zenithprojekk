@@ -268,12 +268,39 @@ footer {
                 placeholder="Masukkan email kamu" required>
 
             <label>Metode Pembayaran</label>
-            <select id="metode" required>
-                <option value="">Pilih metode pembayaran</option>
-                <option value="Transfer Bank">Transfer Bank</option>
-                <option value="QRIS">QRIS</option>
-                <option value="E-Wallet">E-Wallet</option>
-            </select>
+         <label>Metode Pembayaran</label>
+
+<div class="payment-options">
+    <label class="payment-option">
+        <input type="radio" name="metode" value="DANA" required>
+        DANA
+    </label>
+
+    <label class="payment-option">
+        <input type="radio" name="metode" value="OVO">
+        OVO
+    </label>
+
+    <label class="payment-option">
+        <input type="radio" name="metode" value="GoPay">
+        GoPay
+    </label>
+
+    <label class="payment-option">
+        <input type="radio" name="metode" value="ShopeePay">
+        ShopeePay
+    </label>
+
+    <label class="payment-option">
+        <input type="radio" name="metode" value="QRIS">
+        QRIS
+    </label>
+
+    <label class="payment-option">
+        <input type="radio" name="metode" value="Transfer Bank">
+        Transfer Bank
+    </label>
+</div>
 
             <label>Catatan (Opsional)</label>
             <textarea id="catatan"
