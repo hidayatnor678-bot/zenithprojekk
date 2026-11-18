@@ -1,1 +1,368 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembayaran | ZENITH</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080b09;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    padding: 30px 18px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo span {
+    color: #a3e635;
+}
+
+.back {
+    color: #a3e635;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.heading h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.heading p {
+    color: #929b96;
+    font-size: 14px;
+}
+
+.checkout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 25px;
+}
+
+.card {
+    background: #111813;
+    border: 1px solid #26352a;
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.card h2 {
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.package {
+    background: #19251b;
+    border: 1px solid #a3e635;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.package small {
+    color: #a3e635;
+    font-weight: bold;
+}
+
+.package h3 {
+    font-size: 25px;
+    margin: 12px 0;
+}
+
+.package p {
+    color: #a7b2aa;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #354238;
+}
+
+.price strong {
+    color: #a3e635;
+    font-size: 20px;
+}
+
+.info {
+    margin-top: 25px;
+    color: #89958c;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 9px;
+    color: #dce5de;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: #080d09;
+    color: white;
+    border: 1px solid #354238;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #a3e635;
+}
+
+select option {
+    background: #111813;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background: #a3e635;
+    color: #10150c;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b9f45b;
+}
+
+.note {
+    color: #829087;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 17px;
+    line-height: 1.6;
+}
+
+#result {
+    display: none;
+    margin-top: 20px;
+    padding: 16px;
+    background: #19251b;
+    border: 1px solid #a3e635;
+    border-radius: 10px;
+    color: #d9f99d;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #647067;
+    font-size: 12px;
+}
+
+@media(max-width: 700px) {
+    .checkout {
+        grid-template-columns: 1fr;
+    }
+
+    .heading h1 {
+        font-size: 26px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">ZENITH<span>.</span></div>
+    <a href="index.html#pricing" class="back">← Kembali</a>
+</header>
+
+<div class="heading">
+    <h1>Pembayaran</h1>
+    <p>Selesaikan pemesanan layanan editing video kamu.</p>
+</div>
+
+<div class="checkout">
+
+    <div class="card">
+        <h2>Ringkasan Pesanan</h2>
+
+        <div class="package">
+            <small>PAKET PILIHAN</small>
+            <h3 id="packageName">Starter</h3>
+            <p>
+                Video hingga 60 detik<br>
+                Basic cutting<br>
+                Basic color grading<br>
+                Basic sound design<br>
+                1x revisi
+            </p>
+
+            <div class="price">
+                <span>Total Pembayaran</span>
+                <strong id="packagePrice">Rp150.000</strong>
+            </div>
+        </div>
+
+        <div class="info">
+            ✓ Kualitas editing profesional<br>
+            ✓ Komunikasi mudah<br>
+            ✓ Pengerjaan sesuai kesepakatan
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Informasi Pelanggan</h2>
+
+        <form id="orderForm">
+
+            <label>Nama Lengkap</label>
+            <input type="text" id="nama"
+                placeholder="Masukkan nama kamu" required>
+
+            <label>Nomor WhatsApp</label>
+            <input type="tel" id="wa"
+                placeholder="Contoh: 08123456789" required>
+
+            <label>Email</label>
+            <input type="email" id="email"
+                placeholder="Masukkan email kamu" required>
+
+            <label>Metode Pembayaran</label>
+            <select id="metode" required>
+                <option value="">Pilih metode pembayaran</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+                <option value="QRIS">QRIS</option>
+                <option value="E-Wallet">E-Wallet</option>
+            </select>
+
+            <label>Catatan (Opsional)</label>
+            <textarea id="catatan"
+                rows="3"
+                placeholder="Tulis catatan pesanan..."></textarea>
+
+            <button type="submit">
+                Konfirmasi Pesanan →
+            </button>
+
+            <p class="note">
+                Pembayaran belum diproses secara otomatis.
+                Admin akan memberikan informasi pembayaran
+                setelah sistem transaksi dihubungkan.
+            </p>
+
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 ZENITH. All Rights Reserved.
+</footer>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const paket = params.get("paket") || "starter";
+
+const paketData = {
+    starter: {
+        nama: "Starter",
+        harga: 150000
+    },
+    pro: {
+        nama: "Pro",
+        harga: 350000
+    }
+};
+
+const pilihan = paketData[paket.toLowerCase()] || paketData.starter;
+
+document.getElementById("packageName").textContent = pilihan.nama;
+document.getElementById("packagePrice").textContent =
+    "Rp" + pilihan.harga.toLocaleString("id-ID");
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("nama").value;
+    const wa = document.getElementById("wa").value;
+    const email = document.getElementById("email").value;
+    const metode = document.getElementById("metode").value;
+
+    const result = document.getElementById("result");
+
+    result.style.display = "block";
+    result.innerHTML = `
+        <strong>Pesanan berhasil disiapkan!</strong><br><br>
+        Nama: ${escapeHTML(nama)}<br>
+        Paket: ${pilihan.nama}<br>
+        Harga: Rp${pilihan.harga.toLocaleString("id-ID")}<br>
+        WhatsApp: ${escapeHTML(wa)}<br>
+        Email: ${escapeHTML(email)}<br>
+        Metode: ${escapeHTML(metode)}<br><br>
+        Ini masih tahap demo. Belum ada pembayaran
+        atau pengiriman pesanan ke server.
+    `;
+
+    result.scrollIntoView({behavior: "smooth"});
+});
+
+function escapeHTML(value) {
+    return value.replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[char];
+    });
+}
+</script>
+
+</body>
+</html>
+
