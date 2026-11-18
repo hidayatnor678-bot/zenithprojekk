@@ -2,145 +2,426 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Checkout Paket</title>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembayaran Pro | ZENITH</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #0b0d0b;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    background: #080b09;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    padding: 30px 18px;
+}
+
+.container {
+    max-width: 950px;
+    margin: auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+}
+
+.logo span {
+    color: #a3e635;
+}
+
+.back {
+    color: #a3e635;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.heading h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.heading p {
+    color: #929b96;
+    font-size: 14px;
+}
+
+.checkout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 25px;
+}
+
+.card {
+    background: #111813;
+    border: 1px solid #26352a;
+    border-radius: 16px;
+    padding: 28px;
+}
+
+.card h2 {
+    font-size: 19px;
+    margin-bottom: 25px;
+}
+
+.package {
+    background: #19251b;
+    border: 1px solid #a3e635;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.package small {
+    color: #a3e635;
+    font-weight: bold;
+}
+
+.package h3 {
+    font-size: 25px;
+    margin: 12px 0;
+}
+
+.package p {
+    color: #a7b2aa;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #354238;
+}
+
+.price strong {
+    color: #a3e635;
+    font-size: 20px;
+}
+
+.info {
+    margin-top: 25px;
+    color: #89958c;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 9px;
+    color: #dce5de;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    background: #080d09;
+    color: white;
+    border: 1px solid #354238;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #a3e635;
+}
+
+select option {
+    background: #111813;
+}
+
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    background: #080d09;
+    border: 1px solid #354238;
+    border-radius: 8px;
+    padding: 13px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.payment-option:has(input:checked) {
+    border-color: #a3e635;
+    background: #19251b;
+}
+
+.payment-option input {
+    width: auto;
+    margin: 0;
+    accent-color: #a3e635;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background: #a3e635;
+    color: #10150c;
+    border: none;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b9f45b;
+}
+
+.note {
+    color: #829087;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 17px;
+    line-height: 1.6;
+}
+
+#result {
+    display: none;
+    margin-top: 20px;
+    padding: 16px;
+    background: #19251b;
+    border: 1px solid #a3e635;
+    border-radius: 10px;
+    color: #d9f99d;
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #647067;
+    font-size: 12px;
+}
+
+@media(max-width: 700px) {
     .checkout {
-      width: 100%;
-      max-width: 430px;
-      padding: 30px;
-      background: #111711;
-      border: 1px solid #303830;
-      border-radius: 16px;
+        grid-template-columns: 1fr;
     }
 
-    h1 { font-size: 26px; }
-
-    .label { color: #aaa; }
-
-    .price {
-      color: #a3e635;
-      font-size: 34px;
-      font-weight: bold;
+    .heading h1 {
+        font-size: 26px;
     }
-
-    .pay {
-      display: block;
-      margin-top: 25px;
-      padding: 15px;
-      background: #a3e635;
-      color: #101510;
-      text-align: center;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-    }
-
-    .back {
-      display: block;
-      margin-top: 20px;
-      color: #ccc;
-      text-align: center;
-      text-decoration: none;
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
-  <main class="checkout">
-    <p class="label">CHECKOUT</p>
-    <h1>Konfirmasi Paket</h1>
-    <p class="label">Paket pilihan kamu:</p>
 
-    <h2 id="nama">Pro</h2>
-    <p class="price" id="harga">Rp350.000</p>
+<div class="container">
 
-    <p>Pastikan pilihan paket kamu sudah benar.</p>
+<header>
+    <div class="logo">ZENITH<span>.</span></div>
+    <a href="index.html#pricing" class="back">← Kembali</a>
+</header>
 
-<!-- PILIHAN METODE PEMBAYARAN -->
-<div style="margin:25px 0; text-align:left;">
-
-  <h3 style="color:white; margin-bottom:8px;">
-    Pilih Metode Pembayaran
-  </h3>
-
-  <p style="color:#9ca3af; font-size:13px;">
-    Silakan pilih metode pembayaran.
-  </p>
-
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
-
-    <label style="background:#111813;padding:15px;border:1px solid #333;border-radius:10px;color:white;">
-      <input type="radio" name="payment" value="DANA">
-      DANA
-    </label>
-
-    <label style="background:#111813;padding:15px;border:1px solid #333;border-radius:10px;color:white;">
-      <input type="radio" name="payment" value="OVO">
-      OVO
-    </label>
-
-    <label style="background:#111813;padding:15px;border:1px solid #333;border-radius:10px;color:white;">
-      <input type="radio" name="payment" value="GoPay">
-      GoPay
-    </label>
-
-    <label style="background:#111813;padding:15px;border:1px solid #333;border-radius:10px;color:white;">
-      <input type="radio" name="payment" value="ShopeePay">
-      ShopeePay
-    </label>
-
-    <label style="background:#111813;padding:15px;border:1px solid #333;border-radius:10px;color:white;">
-      <input type="radio" name="payment" value="QRIS">
-      QRIS
-    </label>
-
-    <label style="background:#111813;padding:15px;border:1px solid #333;border-radius:10px;color:white;">
-      <input type="radio" name="payment" value="Transfer Bank">
-      Transfer Bank
-    </label>
-
-  </div>
+<div class="heading">
+    <h1>Pembayaran</h1>
+    <p>Selesaikan pemesanan layanan editing video kamu.</p>
 </div>
-<!-- AKHIR METODE PEMBAYARAN -->
 
-       id="bayar">Hubungi Admin untuk Pembayaran →</a>
+<div class="checkout">
 
-    <a class="back" href="index.html">← Kembali ke halaman paket</a>
+    <div class="card">
+        <h2>Ringkasan Pesanan</h2>
 
-    <p class="label" style="font-size:12px;margin-top:20px">
-      Pembayaran perlu dikonfirmasi oleh admin.
-    </p>
-  </main>
+        <div class="package">
+            <small>PAKET PILIHAN</small>
+            <h3 id="packageName">Pro</h3>
 
-  <script>
-    const params = new URLSearchParams(location.search);
-    const paket = (params.get("paket") || "pro").toLowerCase();
+            <p>
+                Video hingga 3 menit<br>
+                Advanced cutting<br>
+                Professional color grading<br>
+                Sound design<br>
+                Motion graphics sederhana<br>
+                3x revisi
+            </p>
 
-    const daftar = {
-      starter: { nama: "Starter", harga: 150000 },
-      pro: { nama: "Pro", harga: 350000 }
-    };
+            <div class="price">
+                <span>Total Pembayaran</span>
+                <strong id="packagePrice">Rp350.000</strong>
+            </div>
+        </div>
 
-    const pilihan = daftar[paket] || daftar.pro;
+        <div class="info">
+            ✓ Kualitas editing profesional<br>
+            ✓ Komunikasi mudah<br>
+            ✓ Pengerjaan sesuai kesepakatan
+        </div>
+    </div>
 
-    document.getElementById("nama").textContent = pilihan.nama;
-    document.getElementById("harga").textContent =
-      "Rp" + pilihan.harga.toLocaleString("id-ID");
-  </script>
+    <div class="card">
+        <h2>Informasi Pelanggan</h2>
+
+        <form id="orderForm">
+
+            <label>Nama Lengkap</label>
+            <input type="text" id="nama"
+                placeholder="Masukkan nama kamu" required>
+
+            <label>Nomor WhatsApp</label>
+            <input type="tel" id="wa"
+                placeholder="Contoh: 08123456789" required>
+
+            <label>Email</label>
+            <input type="email" id="email"
+                placeholder="Masukkan email kamu" required>
+
+            <label>Metode Pembayaran</label>
+
+            <div class="payment-options">
+                <label class="payment-option">
+                    <input type="radio" name="metode" value="DANA" required>
+                    DANA
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="metode" value="OVO">
+                    OVO
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="metode" value="GoPay">
+                    GoPay
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="metode" value="ShopeePay">
+                    ShopeePay
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="metode" value="QRIS">
+                    QRIS
+                </label>
+
+                <label class="payment-option">
+                    <input type="radio" name="metode" value="Transfer Bank">
+                    Transfer Bank
+                </label>
+            </div>
+
+            <label>Catatan (Opsional)</label>
+            <textarea id="catatan"
+                rows="3"
+                placeholder="Tulis catatan pesanan..."></textarea>
+
+            <button type="submit">
+                Konfirmasi Pesanan →
+            </button>
+
+            <p class="note">
+                Pembayaran belum diproses secara otomatis.
+                Admin akan memberikan informasi pembayaran
+                setelah sistem transaksi dihubungkan.
+            </p>
+
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 ZENITH. All Rights Reserved.
+</footer>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const paket = params.get("paket") || "pro";
+
+const paketData = {
+    starter: {
+        nama: "Starter",
+        harga: 150000
+    },
+    pro: {
+        nama: "Pro",
+        harga: 350000
+    }
+};
+
+const pilihan = paketData[paket.toLowerCase()] || paketData.pro;
+
+document.getElementById("packageName").textContent = pilihan.nama;
+document.getElementById("packagePrice").textContent =
+    "Rp" + pilihan.harga.toLocaleString("id-ID");
+
+document.getElementById("orderForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const nama = document.getElementById("nama").value;
+    const wa = document.getElementById("wa").value;
+    const email = document.getElementById("email").value;
+    const metode = document.querySelector('input[name="metode"]:checked').value;
+    const catatan = document.getElementById("catatan").value;
+
+    const result = document.getElementById("result");
+
+    result.style.display = "block";
+    result.innerHTML = `
+        <strong>Pesanan berhasil disiapkan!</strong><br><br>
+        Nama: ${escapeHTML(nama)}<br>
+        Paket: ${pilihan.nama}<br>
+        Harga: Rp${pilihan.harga.toLocaleString("id-ID")}<br>
+        WhatsApp: ${escapeHTML(wa)}<br>
+        Email: ${escapeHTML(email)}<br>
+        Metode: ${escapeHTML(metode)}<br>
+        Catatan: ${escapeHTML(catatan || "-")}<br><br>
+        Ini masih tahap demo. Belum ada pembayaran
+        atau pengiriman pesanan ke server.
+    `;
+
+    result.scrollIntoView({behavior: "smooth"});
+});
+
+function escapeHTML(value) {
+    return value.replace(/[&<>"']/g, function(char) {
+        return {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#039;"
+        }[char];
+    });
+}
+</script>
+
 </body>
 </html>
