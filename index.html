@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<!-- ZENITH CINEMATIC INTRO -->
+
 <div class="intro-screen" id="introScreen">
   <div class="intro-stars"></div>
 
@@ -29,17 +29,18 @@
     <div class="intro-line"></div>
     <h1>ZENITH<span>.</span></h1>
     <p>VISUAL THAT TELLS A STORY</p>
+
     <div class="intro-loading">
       <span></span>
     </div>
   </div>
 
-  <button class="intro-skip" id="skipIntro">
+  <button class="intro-skip" id="skipIntro" type="button">
     LEWATI INTRO ↗
   </button>
-</div>
-
-  <div class="star-field" aria-hidden="true">
+</div> 
+  
+   <div class="star-field" aria-hidden="true">
     <span class="star star-1"></span>
     <span class="star star-2"></span>
     <span class="star star-3"></span>
@@ -386,28 +387,32 @@
     }
   </script>
   
+
+
 <script>
-  // ZENITH CINEMATIC INTRO
+  // ZENITH CINEMATIC INTRO V2
   const intro = document.getElementById("introScreen");
   const skipButton = document.getElementById("skipIntro");
+
+  let introTimer = null;
 
   function closeIntro() {
     if (!intro || intro.classList.contains("hide")) return;
 
+    clearTimeout(introTimer);
     intro.classList.add("hide");
 
     setTimeout(() => {
       intro.remove();
-    }, 1100);
+    }, 1250);
   }
 
-  const introTimer = setTimeout(closeIntro, 4500);
+  if (intro) {
+    introTimer = setTimeout(closeIntro, 4500);
+  }
 
   if (skipButton) {
-    skipButton.addEventListener("click", () => {
-      clearTimeout(introTimer);
-      closeIntro();
-    });
+    skipButton.addEventListener("click", closeIntro);
   }
 </script>
 
