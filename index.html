@@ -385,5 +385,31 @@
       revealItems.forEach(item => item.classList.add('visible'));
     }
   </script>
+  
+<script>
+  // ZENITH CINEMATIC INTRO
+  const intro = document.getElementById("introScreen");
+  const skipButton = document.getElementById("skipIntro");
+
+  function closeIntro() {
+    if (!intro || intro.classList.contains("hide")) return;
+
+    intro.classList.add("hide");
+
+    setTimeout(() => {
+      intro.remove();
+    }, 1100);
+  }
+
+  const introTimer = setTimeout(closeIntro, 4500);
+
+  if (skipButton) {
+    skipButton.addEventListener("click", () => {
+      clearTimeout(introTimer);
+      closeIntro();
+    });
+  }
+</script>
+
 </body>
 </html>
